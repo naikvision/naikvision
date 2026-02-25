@@ -913,6 +913,99 @@ button{
     margin:5px;
     cursor:pointer;
 }
+         .pro-footer {
+  background: #0f172a;
+  color: #fff;
+  padding: 50px 20px 20px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.footer-wrapper {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-faq, .footer-nav {
+  flex: 1;
+  min-width: 300px;
+}
+
+.pro-footer h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  border-left: 4px solid #38bdf8;
+  padding-left: 10px;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  width: 50%;
+  background: #1e293b;
+  color: #fff;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  border-radius: 4px;
+}
+
+.faq-question:hover {
+  background: #334155;
+}
+
+.faq-answer {
+  display: none;
+  background: #020617;
+  padding: 12px;
+  font-size: 14px;
+  color: #cbd5f5;
+}
+
+.icon {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-nav ul li {
+  margin-bottom: 10px;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: #cbd5f5;
+  transition: 0.3s;
+}
+
+.footer-nav ul li a:hover {
+  color: #38bdf8;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+  .footer-wrapper {
+    flex-direction: column;
+  }
+}
 </style>
 
 <script>
@@ -1873,22 +1966,10 @@ setInterval(showSlide, 3000);
         <button onclick="next()">Next ▶</button>
     </div>
 </div>
-  <div class="footer-container">
-
-    <!-- Help & Support -->
-    <div class="footer-box">
-      <h3>Help & Support</h3>
-      <ul>
-        <li><a href="#">Customer Service</a></li>
-        <li><a href="#">Report Issue</a></li>
-        <li><a href="#">Live Chat</a></li>
-        <li><a href="#">FAQs</a></li>
-        <div> </div>
-      </ul>
-    </div>
-
+  
+  
     <!-- Site Map -->
-    <div class="footer-box">
+    <!-- <div class="footer-box">
       <h3>Site Map</h3>
       <ul>
         <li><a href="#">Articles</a></li>
@@ -1896,13 +1977,67 @@ setInterval(showSlide, 3000);
         <li><a href="#">Latest News</a></li>
         <li><a href="#">Blog</a></li>
       </ul>
+    </div> -->
+
+    
+
+  <div class="footer-bottom">
+    
+  </div>
+  <footer class="pro-footer">
+
+  <div class="footer-wrapper">
+
+    <!-- FAQ Section -->
+    <div class="footer-faq">
+      <h3>FQAs</h3>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What services do you provide?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          We provide digital education, technical tutorials, creative learning resources, and professional guidance.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Is the content free to use?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Yes, most content is free. Some premium learning resources may require registration.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How can I contact support?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          You can contact us through the Contact page or email. Response time is within 24–48 hours.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Is your content updated regularly?
+          <span class="icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Yes, we regularly update our content to maintain accuracy and quality.
+        </div>
+      </div>
     </div>
 
-    <!-- Contact Us -->
+         <!-- Contact Us -->
     <div class="footer-box">
       <h3>Contact Us</h3>
-      <p>Email: yourgmail@gmail.com</p>
-      <p>Phone: +91 9876543210</p>
+      <p>Email: naikvision99@gmail.com</p>
+      <p>Phone: +91 8766086767</p>
 
       <div class="social-icons">
         <a href="https://www.youtube.com/@naikvision-99" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -1918,9 +2053,12 @@ setInterval(showSlide, 3000);
 
   </div>
       
+
   <div class="footer-bottom">
-    <p>© 2025 Naikvision. All Rights Reserved.</p>
+    © 2026 Your Website Name | All Rights Reserved
   </div>
+
+</footer>
 
       
 </footer>
@@ -2152,6 +2290,25 @@ function prev(){
 // 🔁 AUTO SLIDE every 5 seconds
 setInterval(next, 5000);
 </script>
+<script>
+  document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector(".icon");
+
+      const open = answer.style.display === "block";
+
+      document.querySelectorAll(".faq-answer").forEach(a => a.style.display = "none");
+      document.querySelectorAll(".icon").forEach(i => i.textContent = "+");
+
+      if (!open) {
+        answer.style.display = "block";
+        icon.textContent = "−";
+      }
+    });
+  });
+</script>
+
 
 </script>
 
@@ -2159,13 +2316,6 @@ setInterval(next, 5000);
 </body>
 
 </html>
-
-
-
-
-
-
-
 
 
 
