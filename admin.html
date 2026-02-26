@@ -40,14 +40,14 @@ const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    window.location.href = "index.html";
+    window.location.href = "/naikvision/admin.html";
   } else {
     loadData();
   }
 });
 window.logout = function(){
   signOut(auth).then(() => {
-    window.location.href = "index.html";
+   window.location.href = "/naikvision/index.html";
   });
 }
 
