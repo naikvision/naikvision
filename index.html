@@ -1008,6 +1008,32 @@ button{
 }
 
 
+      .modal{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+}
+.modal-content{
+  background:black;
+  padding:30px;
+  border-radius:10px;
+  width:300px;
+  text-align:center;
+}
+.modal-content input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+}
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:20px;
+}
 
 
 
@@ -1822,9 +1848,44 @@ setInterval(showSlide, 3000);
       </form>
       
       
-       <button onclick="openModal('loginModal')">Login</button>
-      <button onclick="openModal('signupModal')">Sign Up</button>
+       <!--  <button onclick="openModal('loginModal')">Login</button>
+      <button onclick="openModal('signupModal')">Sign Up</button> -->
+
+    <!-- LOGIN & SIGNUP BUTTONS -->
+<button onclick="openModal('loginModal')">Login</button>
+<button onclick="openModal('signupModal')">Sign Up</button>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+    <h2>Login</h2>
+    <form onsubmit="loginUser(event)">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+    <h2>Sign Up</h2>
+    <form onsubmit="signupUser(event)">
+      <input type="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+
+
     </div>
+
   </header>
 
   <div class="animated-line"></div>
@@ -1861,7 +1922,7 @@ setInterval(showSlide, 3000);
     </div>
   </div> 
   
-
+ 
   <main id="content">
     <h1>Welcome to Naikvision</h1>
     <p>Learn Computer & Software skills with Naikvision YouTube tutorials.</p>
@@ -1977,7 +2038,7 @@ setInterval(showSlide, 3000);
     
   </div>
  -->
-     <div class="slider">
+    <!--  <div class="slider">
     <img src="ChatGPT Image Feb 17, 2026, 07_04_05 PM.png" class="active">
     <img src="images.png">
     <img src="20.02.2026_21.07.05_REC.png">
@@ -1990,7 +2051,7 @@ setInterval(showSlide, 3000);
         <button onclick="next()">Next ▶</button>
     </div>
 </div>
-  
+   -->
   
     <!-- Site Map -->
     <!-- <div class="footer-box">
@@ -2348,7 +2409,67 @@ setInterval(next, 5000);
     });
   });
 </script>
+ 
 
+     <script>
+function openModal(id){
+  document.getElementById(id).style.display="flex";
+}
+function closeModal(id){
+  document.getElementById(id).style.display="none";
+}
+</script>
+
+<!-- FIREBASE SCRIPT -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
+from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDe-o88EL9Hx05c40FyMlFo9MiRbEsCXM",
+  authDomain: "naikvision-login.firebaseapp.com",
+  projectId: "naikvision-login",
+  storageBucket: "naikvision-login.appspot.com",
+  messagingSenderId: "589102069083",
+  appId: "1:589102069083:web:ada0fb358af2e11a13567e"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+window.signupUser = function(event){
+  event.preventDefault();
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+  const confirm = document.getElementById("confirmPassword").value;
+
+  if(password !== confirm){
+    alert("Passwords do not match");
+    return;
+  }
+
+  createUserWithEmailAndPassword(auth, email, password)
+  .then(()=> {
+    alert("Signup Successful");
+    closeModal("signupModal");
+  })
+  .catch(error => alert(error.message));
+}
+
+window.loginUser = function(event){
+  event.preventDefault();
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+  .then(()=> {
+    alert("Login Successful");
+    closeModal("loginModal");
+  })
+  .catch(error => alert(error.message));
+}
+</script>
 
 </script>
 
