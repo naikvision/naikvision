@@ -39,15 +39,12 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    loadData();
+  if (!user) {
+    window.location.href = "index.html";
   } else {
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 1000);
+    loadData();
   }
 });
-
 window.logout = function(){
   signOut(auth).then(() => {
     window.location.href = "index.html";
