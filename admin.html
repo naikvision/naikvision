@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#111;color:white;text-align:center;padding:20px}
+input,textarea{width:90%;max-width:400px;padding:8px;margin:6px}
+button{padding:8px 16px;background:red;color:white;border:none;border-radius:4px;margin:5px}
+.card{background:#222;padding:20px;margin:20px auto;max-width:500px;border-radius:8px}
+</style>
+</head>
+<body>
+
+<h1>Website Admin Panel</h1>
+
+<div class="card">
+<h3>Update Notice</h3>
+<textarea id="notice" placeholder="Write notice here"></textarea><br>
+<button onclick="saveNotice()">Save Notice</button>
+</div>
+
+<div class="card">
+<h3>Add Video Link</h3>
+<input id="video" placeholder="YouTube video link"><br>
+<button onclick="saveVideo()">Save Video</button>
+</div>
+
+<div class="card">
+<h3>Add PDF Link</h3>
+<input id="pdf" placeholder="PDF link"><br>
+<button onclick="savePDF()">Save PDF</button>
+</div>
+
+<script>
+function saveNotice(){
+let text=document.getElementById("notice").value;
+localStorage.setItem("notice",text);
+alert("Notice saved");
+}
+
+function saveVideo(){
+let link=document.getElementById("video").value;
+localStorage.setItem("video",link);
+alert("Video saved");
+}
+
+function savePDF(){
+let link=document.getElementById("pdf").value;
+localStorage.setItem("pdf",link);
+alert("PDF saved");
+}
+</script>
+
+</body>
+</html>
